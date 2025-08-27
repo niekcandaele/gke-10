@@ -7,7 +7,7 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
-  - host: bank.hackathon.example.com
+  - host: bank.gke10.candaele.dev
     http:
       paths:
       - path: /

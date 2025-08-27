@@ -137,64 +137,64 @@ This implementation is divided into 5 phases to incrementally build and test eac
 **Demo**: "At standup, I can show: Both applications running on GKE with working Ingress access"
 
 ### Tasks
-- [ ] Task 5.1: Create namespaces in cluster
+- [x] Task 5.1: Create namespaces in cluster
   - **Output**: Namespaces created in GKE
   - **Commands**: 
     - `kubectl create namespace bank-of-anthos`
     - `kubectl create namespace online-boutique`
   - **Verify**: `kubectl get namespaces` shows both namespaces
 
-- [ ] Task 5.2: Deploy Bank of Anthos via kubectl (pre-Argo test)
+- [x] Task 5.2: Deploy Bank of Anthos via kubectl (pre-Argo test)
   - **Depends on**: 5.1
   - **Output**: Bank of Anthos running in cluster
   - **Commands**: `kubectl kustomize kustomize/bank-of-anthos/overlays/hackathon/ | kubectl apply -n bank-of-anthos -f -`
   - **Verify**: `kubectl get pods -n bank-of-anthos` shows all pods running
 
-- [ ] Task 5.3: Deploy Online Boutique via kubectl (pre-Argo test)
+- [x] Task 5.3: Deploy Online Boutique via kubectl (pre-Argo test)
   - **Depends on**: 5.1
   - **Output**: Online Boutique running in cluster
   - **Commands**: `kubectl kustomize kustomize/online-boutique/overlays/hackathon/ | kubectl apply -n online-boutique -f -`
   - **Verify**: `kubectl get pods -n online-boutique` shows pods running (no paymentservice)
 
-- [ ] Task 5.4: Verify Ingress functionality
+- [x] Task 5.4: Verify Ingress functionality
   - **Depends on**: 5.2, 5.3
   - **Output**: Working Ingress endpoints
   - **Verify**: 
     - `kubectl get ingress -A` shows both ingresses with IPs
     - Port-forward test: `kubectl port-forward -n bank-of-anthos svc/frontend 8080:80`
 
-- [ ] Task 5.5: Install and configure Argo CD (if not present)
+- [x] Task 5.5: Install and configure Argo CD (if not present)
   - **Output**: Argo CD running in cluster
   - **Commands**: Follow Argo CD installation guide
   - **Verify**: `kubectl get pods -n argocd` shows Argo CD components
 
-- [ ] Task 5.6: Deploy Argo CD Applications
+- [x] Task 5.6: Deploy Argo CD Applications
   - **Depends on**: 5.5
   - **Output**: Applications managed by Argo CD
-  - **Commands**: `kubectl apply -f argocd/applications/`
+  - **Commands**: `kubectl apply -f k8s/argocd/applications/`
   - **Verify**: Argo CD UI shows both applications synced
 
 ### Phase 5 Checkpoint
-- [ ] Service verification: `kubectl get svc -n bank-of-anthos frontend` shows ClusterIP
-- [ ] Service verification: `kubectl get svc -n online-boutique | grep -v paymentservice`
-- [ ] Ingress verification: Both applications accessible via Ingress endpoints
-- [ ] Argo CD verification: Applications show as "Synced" and "Healthy"
-- [ ] **Demo ready**: Access both applications through browser via Ingress URLs
+- [x] Service verification: `kubectl get svc -n bank-of-anthos frontend` shows ClusterIP
+- [x] Service verification: `kubectl get svc -n online-boutique | grep -v paymentservice`
+- [x] Ingress verification: Both applications accessible via Ingress endpoints
+- [x] Argo CD verification: Applications show as "Synced" and "Healthy"
+- [x] **Demo ready**: Access both applications through browser via Ingress URLs
 
 ## Final Verification
-- [ ] All requirements from design doc met:
-  - [ ] REQ-001: Bank of Anthos in dedicated namespace
-  - [ ] REQ-002: Online Boutique in dedicated namespace
-  - [ ] REQ-003: Bank frontend Service is ClusterIP
-  - [ ] REQ-004: Boutique frontend-external removed/modified
-  - [ ] REQ-005: Ingress resources created
-  - [ ] REQ-006: Payment service removed
-  - [ ] REQ-007: Kustomize overlays working
-  - [ ] REQ-008: Argo CD managing deployments
-  - [ ] REQ-009: Frontend deployments running
-- [ ] Load generators functioning
-- [ ] No payment service pods in Online Boutique
-- [ ] Documentation updated with deployment instructions
+- [x] All requirements from design doc met:
+  - [x] REQ-001: Bank of Anthos in dedicated namespace
+  - [x] REQ-002: Online Boutique in dedicated namespace
+  - [x] REQ-003: Bank frontend Service is ClusterIP
+  - [x] REQ-004: Boutique frontend-external removed/modified
+  - [x] REQ-005: Ingress resources created
+  - [x] REQ-006: Payment service removed
+  - [x] REQ-007: Kustomize overlays working
+  - [x] REQ-008: Argo CD managing deployments
+  - [x] REQ-009: Frontend deployments running
+- [x] Load generators functioning
+- [x] No payment service pods in Online Boutique
+- [x] Documentation updated with deployment instructions
 
 ## Rollback Plan
 If issues occur:
