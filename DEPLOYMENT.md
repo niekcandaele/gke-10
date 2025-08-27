@@ -59,10 +59,11 @@ k8s/
    ```
 
 3. **Access Applications**:
-   - Bank of Anthos: `http://bank.gke10.candaele.dev`
-   - Online Boutique: `http://boutique.gke10.candaele.dev`
+   - Bank of Anthos: `https://bank.gke10.candaele.dev`
+   - Online Boutique: `https://boutique.gke10.candaele.dev`
    
-   Note: DNS should be configured with a wildcard A record for `*.gke10.candaele.dev` pointing to the ingress IP.
+   Note: DNS should be configured with a wildcard A record for `*.gke10.candaele.dev` pointing to the ingress IP. 
+   SSL certificates are automatically provisioned by cert-manager using Let's Encrypt.
 
 ### Manual Kustomize Build (for testing)
 
