@@ -12,3 +12,4 @@ resources:
   - https://github.com/GoogleCloudPlatform/bank-of-anthos/raw/main/kubernetes-manifests/loadgenerator.yaml
   - https://github.com/GoogleCloudPlatform/bank-of-anthos/raw/main/kubernetes-manifests/transaction-history.yaml
   - https://github.com/GoogleCloudPlatform/bank-of-anthos/raw/main/kubernetes-manifests/userservice.yaml
+  - https://github.com/GoogleCloudPlatform/bank-of-anthos/raw/main/extras/jwt/jwt-secret.yaml
