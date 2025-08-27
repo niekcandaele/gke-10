@@ -6,6 +6,7 @@ namespace: bank-of-anthos
 resources:
   - ../../base
   - resources/ingress.yaml
+  - resources/certificate.yaml
 
 patches:
   - path: patches/frontend-service-patch.yaml

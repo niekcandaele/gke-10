@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: boutique-gke10-candaele-dev-tls
+  namespace: online-boutique
+spec:
+  secretName: boutique-gke10-candaele-dev-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  dnsNames:
+  - boutique.gke10.candaele.dev

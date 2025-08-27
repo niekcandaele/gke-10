@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: bank-gke10-candaele-dev-tls
+  namespace: bank-of-anthos
+spec:
+  secretName: bank-gke10-candaele-dev-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  dnsNames:
+  - bank.gke10.candaele.dev

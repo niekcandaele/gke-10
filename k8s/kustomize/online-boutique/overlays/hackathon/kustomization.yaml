@@ -6,6 +6,7 @@ namespace: online-boutique
 resources:
   - ../../base
   - resources/ingress.yaml
+  - resources/certificate.yaml
 
 patchesStrategicMerge:
   - patches/frontend-service-patch.yaml
