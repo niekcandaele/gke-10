@@ -21,3 +21,7 @@ patches:
     target:
       kind: StatefulSet
       name: ledger-db
+  - path: patches/disable-tracing.yaml
+    target:
+      kind: ConfigMap
+      name: environment-config
