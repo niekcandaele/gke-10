@@ -6,7 +6,7 @@ metadata:
 spec:
   secretName: boutique-gke10-candaele-dev-tls
   issuerRef:
-    name: letsencrypt-prod
+    name: letsencrypt-http01
     kind: ClusterIssuer
   dnsNames:
   - boutique.gke10.candaele.dev
