@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: git@github.com:niekcandaele/gke-10.git
     targetRevision: main
-    path: kustomize/bank-of-anthos/overlays/hackathon
+    path: k8s/kustomize/bank-of-anthos/overlays/hackathon
   destination:
     server: https://kubernetes.default.svc
     namespace: bank-of-anthos

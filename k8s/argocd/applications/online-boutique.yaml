@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: git@github.com:niekcandaele/gke-10.git
     targetRevision: main
-    path: kustomize/online-boutique/overlays/hackathon
+    path: k8s/kustomize/online-boutique/overlays/hackathon
   destination:
     server: https://kubernetes.default.svc
     namespace: online-boutique
