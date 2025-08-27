@@ -1,0 +1,192 @@
+# Patch to disable tracing and metrics for all Bank of Anthos deployments
+# This prevents IAM authentication errors when running outside GCP
+
+# balancereader - disable tracing and metrics
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: balancereader
+spec:
+  template:
+    spec:
+      containers:
+      - name: balancereader
+        env:
+        - name: VERSION
+          value: "v0.6.7"
+        - name: PORT
+          value: "8080"
+        - name: ENABLE_TRACING
+          value: "false"  # Changed from true
+        - name: ENABLE_METRICS
+          value: "false"  # Changed from true
+        - name: POLL_MS
+          value: "100"
+        - name: CACHE_SIZE
+          value: "1000000"
+        - name: JVM_OPTS
+          value: "-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -Xms256m -Xmx512m"
+        - name: LOG_LEVEL
+          value: "info"
+        - name: NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+
+# contacts - disable tracing
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: contacts
+spec:
+  template:
+    spec:
+      containers:
+      - name: contacts
+        env:
+        - name: VERSION
+          value: "v0.6.7"
+        - name: PORT
+          value: "8080"
+        - name: ENABLE_TRACING
+          value: "false"  # Changed from true
+        - name: LOG_LEVEL
+          value: "info"
+
+# frontend - disable tracing
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  template:
+    spec:
+      containers:
+      - name: front
+        env:
+        - name: VERSION
+          value: "v0.6.7"
+        - name: PORT
+          value: "8080"
+        - name: ENABLE_TRACING
+          value: "false"  # Changed from true
+        - name: SCHEME
+          value: "http"
+        - name: LOG_LEVEL
+          value: "info"
+        - name: DEFAULT_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              key: DEMO_LOGIN_USERNAME
+              name: demo-data-config
+        - name: DEFAULT_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              key: DEMO_LOGIN_PASSWORD
+              name: demo-data-config
+        - name: REGISTERED_OAUTH_CLIENT_ID
+          valueFrom:
+            configMapKeyRef:
+              key: DEMO_OAUTH_CLIENT_ID
+              name: oauth-config
+              optional: true
+        - name: ALLOWED_OAUTH_REDIRECT_URI
+          valueFrom:
+            configMapKeyRef:
+              key: DEMO_OAUTH_REDIRECT_URI
+              name: oauth-config
+              optional: true
+
+# ledgerwriter - disable tracing and metrics
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ledgerwriter
+spec:
+  template:
+    spec:
+      containers:
+      - name: ledgerwriter
+        env:
+        - name: VERSION
+          value: "v0.6.7"
+        - name: PORT
+          value: "8080"
+        - name: ENABLE_TRACING
+          value: "false"  # Changed from true
+        - name: ENABLE_METRICS
+          value: "false"  # Changed from true
+        - name: JVM_OPTS
+          value: "-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -Xms256m -Xmx512m"
+        - name: LOG_LEVEL
+          value: "info"
+        - name: NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+
+# transactionhistory - disable tracing and metrics
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: transactionhistory
+spec:
+  template:
+    spec:
+      containers:
+      - name: transactionhistory
+        env:
+        - name: VERSION
+          value: "v0.6.7"
+        - name: PORT
+          value: "8080"
+        - name: ENABLE_TRACING
+          value: "false"  # Changed from true
+        - name: ENABLE_METRICS
+          value: "false"  # Changed from true
+        - name: POLL_MS
+          value: "100"
+        - name: CACHE_SIZE
+          value: "1000"
+        - name: CACHE_MINUTES
+          value: "60"
+        - name: HISTORY_LIMIT
+          value: "100"
+        - name: JVM_OPTS
+          value: "-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -Xms256m -Xmx512m"
+        - name: LOG_LEVEL
+          value: "info"
+        - name: NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+
+# userservice - disable tracing
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: userservice
+spec:
+  template:
+    spec:
+      containers:
+      - name: userservice
+        env:
+        - name: VERSION
+          value: "v0.6.7"
+        - name: PORT
+          value: "8080"
+        - name: ENABLE_TRACING
+          value: "false"  # Changed from true
+        - name: TOKEN_EXPIRY_SECONDS
+          value: "3600"
+        - name: PRIV_KEY_PATH
+          value: "/tmp/.ssh/privatekey"
+        - name: LOG_LEVEL
+          value: "info"
