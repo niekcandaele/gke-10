@@ -12,3 +12,11 @@ patches:
     target:
       kind: Service
       name: frontend
+  - path: patches/statefulset-sa-fix.yaml
+    target:
+      kind: StatefulSet
+      name: accounts-db
+  - path: patches/statefulset-sa-fix.yaml
+    target:
+      kind: StatefulSet
+      name: ledger-db

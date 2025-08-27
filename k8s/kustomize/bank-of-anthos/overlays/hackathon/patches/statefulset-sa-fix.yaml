@@ -1,0 +1,5 @@
+- op: remove
+  path: /spec/template/spec/serviceAccount
+- op: replace
+  path: /spec/template/spec/serviceAccountName
+  value: bank-of-anthos
