@@ -7,7 +7,6 @@ resources:
   - ../../base
   - resources/ingress.yaml
   - resources/certificate.yaml
-  - resources/cluster-issuer.yaml
 
 patches:
   - path: patches/frontend-service-patch.yaml
