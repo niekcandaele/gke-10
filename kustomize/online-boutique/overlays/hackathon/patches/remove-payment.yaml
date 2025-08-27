@@ -1,0 +1,21 @@
+# Remove payment service deployment
+---
+$patch: delete
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paymentservice
+---
+# Remove payment service
+$patch: delete
+apiVersion: v1
+kind: Service
+metadata:
+  name: paymentservice
+---
+# Remove payment service account
+$patch: delete
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: paymentservice

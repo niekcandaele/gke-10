@@ -1,0 +1,8 @@
+# Removes the frontend-external LoadBalancer service
+# The internal frontend service (ClusterIP) is already correctly configured
+---
+$patch: delete
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-external

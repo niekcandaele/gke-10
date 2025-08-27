@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - https://github.com/GoogleCloudPlatform/bank-of-anthos/raw/main/kubernetes-manifests/accounts-db.yaml
+  - https://github.com/GoogleCloudPlatform/bank-of-anthos/raw/main/kubernetes-manifests/balance-reader.yaml
+  - https://github.com/GoogleCloudPlatform/bank-of-anthos/raw/main/kubernetes-manifests/config.yaml
+  - https://github.com/GoogleCloudPlatform/bank-of-anthos/raw/main/kubernetes-manifests/contacts.yaml
+  - https://github.com/GoogleCloudPlatform/bank-of-anthos/raw/main/kubernetes-manifests/frontend.yaml
+  - https://github.com/GoogleCloudPlatform/bank-of-anthos/raw/main/kubernetes-manifests/ledger-db.yaml
+  - https://github.com/GoogleCloudPlatform/bank-of-anthos/raw/main/kubernetes-manifests/ledger-writer.yaml
+  - https://github.com/GoogleCloudPlatform/bank-of-anthos/raw/main/kubernetes-manifests/loadgenerator.yaml
+  - https://github.com/GoogleCloudPlatform/bank-of-anthos/raw/main/kubernetes-manifests/transaction-history.yaml
+  - https://github.com/GoogleCloudPlatform/bank-of-anthos/raw/main/kubernetes-manifests/userservice.yaml
