@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: productcatalogservice
+  namespace: bank-of-anthos
+spec:
+  template:
+    spec:
+      containers:
+      - name: server
+        volumeMounts:
+        - name: products-config
+          mountPath: /products.json
+          subPath: products.json
+          readOnly: true
+      volumes:
+      - name: products-config
+        configMap:
+          name: custom-products

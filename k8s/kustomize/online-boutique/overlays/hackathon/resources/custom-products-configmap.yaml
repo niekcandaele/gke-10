@@ -1,0 +1,479 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: custom-products
+  namespace: bank-of-anthos
+data:
+  products.json: |
+    {
+      "products": [
+        {
+          "id": "OLJCESPC7Z",
+          "name": "Organic Rice (5kg)",
+          "description": "Premium long grain organic rice, perfect for daily meals",
+          "picture": "/static/img/products/rice.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 15,
+            "nanos": 990000000
+          },
+          "categories": ["food", "essentials"]
+        },
+        {
+          "id": "66VCHSJNUP",
+          "name": "Fresh Milk (1 gallon)",
+          "description": "Farm fresh whole milk, delivered daily",
+          "picture": "/static/img/products/milk.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 4,
+            "nanos": 990000000
+          },
+          "categories": ["food", "dairy", "essentials"]
+        },
+        {
+          "id": "1YMWWN1N4O",
+          "name": "Artisan Bread Loaf",
+          "description": "Freshly baked sourdough bread",
+          "picture": "/static/img/products/bread.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 3,
+            "nanos": 490000000
+          },
+          "categories": ["food", "bakery"]
+        },
+        {
+          "id": "L9ECAV7KIM",
+          "name": "Coffee Beans (1lb)",
+          "description": "Premium arabica coffee beans, medium roast",
+          "picture": "/static/img/products/coffee.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 12,
+            "nanos": 990000000
+          },
+          "categories": ["beverages", "coffee"]
+        },
+        {
+          "id": "2ZYFJ3GM2N",
+          "name": "Green Tea Box (100 bags)",
+          "description": "Organic green tea, individually wrapped",
+          "picture": "/static/img/products/tea.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 8,
+            "nanos": 990000000
+          },
+          "categories": ["beverages", "tea"]
+        },
+        {
+          "id": "0PUK6V6EV0",
+          "name": "Mixed Vegetable Pack",
+          "description": "Fresh seasonal vegetables (2kg)",
+          "picture": "/static/img/products/vegetables.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 6,
+            "nanos": 990000000
+          },
+          "categories": ["food", "produce", "essentials"]
+        },
+        {
+          "id": "LS4PSXUNUM",
+          "name": "Laptop Pro 15\"",
+          "description": "High-performance laptop with 16GB RAM, 512GB SSD",
+          "picture": "/static/img/products/laptop.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 1299,
+            "nanos": 0
+          },
+          "categories": ["electronics", "computers"]
+        },
+        {
+          "id": "9SIQT8TOJO",
+          "name": "Smartphone X",
+          "description": "Latest model smartphone with 5G, 128GB storage",
+          "picture": "/static/img/products/phone.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 799,
+            "nanos": 0
+          },
+          "categories": ["electronics", "phones"]
+        },
+        {
+          "id": "6E92ZMYYFZ",
+          "name": "Wireless Headphones",
+          "description": "Noise-cancelling Bluetooth headphones",
+          "picture": "/static/img/products/headphones.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 149,
+            "nanos": 990000000
+          },
+          "categories": ["electronics", "audio"]
+        },
+        {
+          "id": "QMTLF432B8",
+          "name": "Tablet 10\"",
+          "description": "Versatile tablet with stylus support",
+          "picture": "/static/img/products/tablet.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 399,
+            "nanos": 0
+          },
+          "categories": ["electronics", "tablets"]
+        },
+        {
+          "id": "HJK8L9M1N2",
+          "name": "All-Purpose Cleaner",
+          "description": "Multi-surface cleaning solution (1L)",
+          "picture": "/static/img/products/cleaner.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 4,
+            "nanos": 990000000
+          },
+          "categories": ["household", "cleaning", "essentials"]
+        },
+        {
+          "id": "PLK7J6H5G4",
+          "name": "Toilet Paper (12 rolls)",
+          "description": "Soft and strong, 3-ply toilet tissue",
+          "picture": "/static/img/products/toiletpaper.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 9,
+            "nanos": 990000000
+          },
+          "categories": ["household", "essentials"]
+        },
+        {
+          "id": "QWE4R5T6Y7",
+          "name": "AA Batteries (8 pack)",
+          "description": "Long-lasting alkaline batteries",
+          "picture": "/static/img/products/batteries.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 7,
+            "nanos": 990000000
+          },
+          "categories": ["household", "electronics", "essentials"]
+        },
+        {
+          "id": "ASD3F4G5H6",
+          "name": "LED Light Bulbs (4 pack)",
+          "description": "Energy-efficient 60W equivalent LED bulbs",
+          "picture": "/static/img/products/lightbulbs.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 12,
+            "nanos": 990000000
+          },
+          "categories": ["household", "essentials"]
+        },
+        {
+          "id": "ZXC2V3B4N5",
+          "name": "Shampoo & Conditioner Set",
+          "description": "Professional hair care duo (500ml each)",
+          "picture": "/static/img/products/shampoo.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 14,
+            "nanos": 990000000
+          },
+          "categories": ["personal-care", "essentials"]
+        },
+        {
+          "id": "RTY5U6I7O8",
+          "name": "Toothpaste (3 pack)",
+          "description": "Fluoride toothpaste with whitening",
+          "picture": "/static/img/products/toothpaste.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 8,
+            "nanos": 990000000
+          },
+          "categories": ["personal-care", "essentials"]
+        },
+        {
+          "id": "GHJ7K8L9M0",
+          "name": "Hand Soap (3 pack)",
+          "description": "Antibacterial liquid hand soap",
+          "picture": "/static/img/products/soap.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 9,
+            "nanos": 990000000
+          },
+          "categories": ["personal-care", "essentials"]
+        },
+        {
+          "id": "VBN1M2N3B4",
+          "name": "Deodorant Twin Pack",
+          "description": "48-hour protection antiperspirant",
+          "picture": "/static/img/products/deodorant.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 6,
+            "nanos": 990000000
+          },
+          "categories": ["personal-care"]
+        },
+        {
+          "id": "POI8U7Y6T5",
+          "name": "A4 Paper Ream (500 sheets)",
+          "description": "Premium white copy paper",
+          "picture": "/static/img/products/paper.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 7,
+            "nanos": 990000000
+          },
+          "categories": ["office", "essentials"]
+        },
+        {
+          "id": "LKJ9H8G7F6",
+          "name": "Ballpoint Pens (12 pack)",
+          "description": "Smooth writing blue ink pens",
+          "picture": "/static/img/products/pens.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 4,
+            "nanos": 990000000
+          },
+          "categories": ["office", "essentials"]
+        },
+        {
+          "id": "MNB5V6C7X8",
+          "name": "Spiral Notebooks (5 pack)",
+          "description": "College ruled, 100 pages each",
+          "picture": "/static/img/products/notebooks.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 9,
+            "nanos": 990000000
+          },
+          "categories": ["office", "school"]
+        },
+        {
+          "id": "WER3T4Y5U6",
+          "name": "Bestseller Novel Collection",
+          "description": "Top 5 fiction books of the year",
+          "picture": "/static/img/products/books.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 49,
+            "nanos": 990000000
+          },
+          "categories": ["entertainment", "books"]
+        },
+        {
+          "id": "SDF4G5H6J7",
+          "name": "Board Game Bundle",
+          "description": "Family-friendly strategy games set",
+          "picture": "/static/img/products/games.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 39,
+            "nanos": 990000000
+          },
+          "categories": ["entertainment", "games"]
+        },
+        {
+          "id": "XCV6B7N8M9",
+          "name": "Streaming Gift Card",
+          "description": "3-month subscription to popular streaming service",
+          "picture": "/static/img/products/streaming.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 29,
+            "nanos": 990000000
+          },
+          "categories": ["entertainment", "digital"]
+        },
+        {
+          "id": "TGB5Y6H7U8",
+          "name": "Eggs (Dozen)",
+          "description": "Farm fresh free-range eggs",
+          "picture": "/static/img/products/eggs.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 3,
+            "nanos": 990000000
+          },
+          "categories": ["food", "dairy", "essentials"]
+        },
+        {
+          "id": "RFV4C5D6E7",
+          "name": "Pasta Variety Pack",
+          "description": "Assorted pasta shapes (5x500g)",
+          "picture": "/static/img/products/pasta.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 8,
+            "nanos": 990000000
+          },
+          "categories": ["food", "pantry"]
+        },
+        {
+          "id": "EDC3W4S5X6",
+          "name": "Canned Soup Set (6 cans)",
+          "description": "Variety of hearty soups",
+          "picture": "/static/img/products/soup.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 11,
+            "nanos": 990000000
+          },
+          "categories": ["food", "pantry"]
+        },
+        {
+          "id": "WSX2Z3A4Q5",
+          "name": "Snack Mix Box",
+          "description": "Assorted chips, crackers, and nuts",
+          "picture": "/static/img/products/snacks.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 15,
+            "nanos": 990000000
+          },
+          "categories": ["food", "snacks"]
+        },
+        {
+          "id": "QAZ1W2S3E4",
+          "name": "Fruit Basket",
+          "description": "Fresh seasonal fruits (3kg)",
+          "picture": "/static/img/products/fruits.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 12,
+            "nanos": 990000000
+          },
+          "categories": ["food", "produce"]
+        },
+        {
+          "id": "UJM7I8K9L0",
+          "name": "USB-C Charger Set",
+          "description": "Fast charger with 3 cables",
+          "picture": "/static/img/products/charger.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 24,
+            "nanos": 990000000
+          },
+          "categories": ["electronics", "accessories"]
+        },
+        {
+          "id": "YHN6B7V8C9",
+          "name": "Power Bank 20000mAh",
+          "description": "Portable battery pack with dual USB",
+          "picture": "/static/img/products/powerbank.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 39,
+            "nanos": 990000000
+          },
+          "categories": ["electronics", "accessories"]
+        },
+        {
+          "id": "TFC5R6D7F8",
+          "name": "Vintage Camera",
+          "description": "Decorative vintage camera replica. Use as a room decoration.",
+          "picture": "/static/img/products/camera-lens.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 25,
+            "nanos": 900000000
+          },
+          "categories": ["decor", "vintage"]
+        },
+        {
+          "id": "KLM3N4O5P6",
+          "name": "Cotton T-Shirt",
+          "description": "Comfortable everyday cotton t-shirt in various colors",
+          "picture": "/static/img/products/t-shirt.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 12,
+            "nanos": 990000000
+          },
+          "categories": ["clothing", "apparel"]
+        },
+        {
+          "id": "BNM4V5C6X7",
+          "name": "Denim Jeans",
+          "description": "Classic fit denim jeans",
+          "picture": "/static/img/products/jeans.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 49,
+            "nanos": 990000000
+          },
+          "categories": ["clothing", "apparel"]
+        },
+        {
+          "id": "ZXA2S3D4F5",
+          "name": "Running Shoes",
+          "description": "Comfortable athletic running shoes",
+          "picture": "/static/img/products/shoes.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 79,
+            "nanos": 990000000
+          },
+          "categories": ["footwear", "sports"]
+        },
+        {
+          "id": "POL8I9U7Y6",
+          "name": "Sunglasses",
+          "description": "UV protection polarized sunglasses",
+          "picture": "/static/img/products/sunglasses.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 19,
+            "nanos": 990000000
+          },
+          "categories": ["accessories", "fashion"]
+        },
+        {
+          "id": "MKL3J4H5G6",
+          "name": "Watch",
+          "description": "Classic analog wrist watch",
+          "picture": "/static/img/products/watch.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 59,
+            "nanos": 990000000
+          },
+          "categories": ["accessories", "fashion"]
+        },
+        {
+          "id": "VFR4D5E6R7",
+          "name": "Kitchen Knife Set",
+          "description": "Professional 5-piece knife set with block",
+          "picture": "/static/img/products/knives.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 89,
+            "nanos": 990000000
+          },
+          "categories": ["kitchen", "cooking"]
+        },
+        {
+          "id": "BGT5Y6H7U8",
+          "name": "Non-Stick Pan Set",
+          "description": "3-piece non-stick cookware set",
+          "picture": "/static/img/products/pans.jpg",
+          "priceUsd": {
+            "currencyCode": "USD",
+            "units": 69,
+            "nanos": 990000000
+          },
+          "categories": ["kitchen", "cooking"]
+        }
+      ]
+    }
