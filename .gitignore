@@ -1,1 +1,8 @@
 _external
+
+# Tilt configuration
+tilt_config.json
+tilt-settings.json
+
+# Tilt build artifacts
+.tilt-build/

@@ -17,11 +17,10 @@ The GKE hackathon requires connecting two separate microservice applications - B
 #### Functional
 - REQ-001: The system SHALL accept payment requests from Online Boutique's CheckoutService via gRPC
 - REQ-002: WHEN a customer makes a purchase THEN the payment SHALL be deducted from their Bank of Anthos account
-- REQ-003: The system SHALL validate Bank of Anthos JWT tokens for authentication
+- REQ-003: The system SHALL use service account authentication when calling Bank of Anthos APIs
 - REQ-004: The system SHALL map credit card numbers to bank account numbers for payment processing
 - REQ-005: WHEN payment fails due to insufficient funds THEN the system SHALL return appropriate error to CheckoutService
 - REQ-006: The system SHALL convert between Boutique's Money format and Bank's cents format
-- REQ-007: The system SHALL support the A2A (Agent-to-Agent) protocol for intelligent payment routing
 
 #### Non-Functional
 - **Performance**: Payment processing latency < 500ms (p99)
@@ -35,13 +34,11 @@ The GKE hackathon requires connecting two separate microservice applications - B
 - Must maintain backward compatibility with existing payment flows
 - Must use containerized deployment on GKE
 - Should leverage Google AI services for intelligent features
-- Must support A2A protocol for agent communication
 
 ### Success Criteria
 - Successful end-to-end purchase flow from boutique to bank debit
 - Zero failed transactions due to integration issues
 - Complete transaction history visible in both systems
-- Demonstration of AI-powered features (fraud detection, smart routing)
 - Clean removal of mock payment service
 
 ## Layer 2: Functional Specification
@@ -56,12 +53,12 @@ The GKE hackathon requires connecting two separate microservice applications - B
    - User receives order confirmation with bank transaction ID
    - Transaction appears in bank account history
 
-2. **Authentication Flow**
-   - User logs into Bank of Anthos first
-   - JWT token stored in session/cookie
-   - Token forwarded to Payment Integration Service
-   - Service validates token with Bank's public key
-   - Account context extracted for payment processing
+2. **Service Authentication Flow**
+   - Payment Integration Service configured with service account credentials
+   - Service generates/uses pre-configured JWT token for Bank API calls
+   - No authentication required from Online Boutique users
+   - Service acts as trusted intermediary between Boutique and Bank
+   - All Bank API calls authenticated with service token
 
 3. **Insufficient Funds Handling**
    - Payment request received from CheckoutService
@@ -102,17 +99,6 @@ Authorization: Bearer {jwt_token}
 }
 ```
 
-**A2A Protocol Interface**:
-```yaml
-agent_communication:
-  protocol: a2a
-  messages:
-    - payment_request
-    - fraud_check
-    - balance_verification
-    - transaction_confirmation
-```
-
 ### Alternatives Considered
 
 | Option | Pros | Cons | Why Not Chosen |
@@ -131,14 +117,6 @@ agent_communication:
 │ CheckoutService │──────────────►│ Payment Integration  │───────────────►│ LedgerWriter    │
 │   (Boutique)    │◄──────────────│      Service         │◄───────────────│   (Bank)        │
 └─────────────────┘   ChargeResp  └──────────────────────┘   Transaction   └─────────────────┘
-                                            │
-                                            │ A2A Protocol
-                                            ▼
-                                   ┌──────────────────┐
-                                   │   AI Agents      │
-                                   │ - Fraud Detection│
-                                   │ - Smart Routing  │
-                                   └──────────────────┘
 ```
 
 ### Code Change Analysis
@@ -169,24 +147,20 @@ agent_communication:
 - Core logic flow:
   ```
   on ChargeRequest:
-    extract jwt_token from context
-    validate token with bank public key
+    # No JWT required from Boutique
     map credit_card_number to account_id
     convert boutique_money to bank_cents
-    
-    if ai_enabled:
-      check fraud_score via a2a
-      if fraud_detected: reject
-    
-    call bank /transactions endpoint
+    generate/retrieve service_jwt_token
+    call bank /transactions endpoint with service_jwt
     return transaction_id as ChargeResponse
   ```
 
-**JWT Validator** (src/payment-integration/auth/)
-- Validates Bank of Anthos JWT tokens
-- Uses RS256 with Bank's public key
-- Extracts account context from token
-- Pattern follows: _external/bank-of-anthos/src/frontend/frontend.py:616-637
+**Service Authenticator** (src/payment-integration/auth/)
+- Generates or loads service account JWT tokens
+- Uses pre-configured credentials for Bank API authentication
+- Manages token refresh/expiry
+- Acts as service-to-service authentication layer
+- No user context required from Boutique
 
 **Money Converter** (src/payment-integration/converter/)
 - Converts between formats:
@@ -204,21 +178,6 @@ agent_communication:
 - Initial implementation: last 10 digits as account number
 - Future: database-backed mapping table
 - Fallback to default merchant account
-
-**A2A Agent Client** (src/payment-integration/agents/)
-- Implements A2A protocol client
-- Communicates with AI agents for:
-  ```
-  fraud_detection:
-    send payment_context to agent
-    receive risk_score
-    if score > threshold: reject
-    
-  smart_routing:
-    send transaction_details
-    receive optimal_processing_path
-    execute recommended_flow
-  ```
 
 #### Data Models
 
@@ -243,7 +202,8 @@ AccountMap:
 ```
 
 #### Security
-- JWT validation using Bank of Anthos public key (pattern from userservice.py)
+- Service-to-service authentication using pre-configured JWT
+- Payment service acts as trusted intermediary
 - TLS for all service communication
 - Secret management via Kubernetes secrets
 - No logging of sensitive data (card numbers, account numbers)
@@ -252,7 +212,7 @@ AccountMap:
 ### Testing Strategy
 
 **Unit Tests**:
-- JWT validation with valid/invalid/expired tokens
+- Service token generation and refresh
 - Money conversion accuracy (edge cases: 0, negative, overflow)
 - Account mapping logic
 - Error handling for bank API failures
@@ -261,7 +221,6 @@ AccountMap:
 - End-to-end payment flow with mock bank service
 - gRPC interface compatibility with CheckoutService
 - REST client testing with Bank of Anthos
-- A2A protocol message exchange
 
 **E2E Tests**:
 - Complete purchase flow from boutique to bank debit
@@ -280,30 +239,3 @@ AccountMap:
 - Replace boutique PaymentService with integration service
 - Configure service discovery and networking
 - End-to-end testing with both systems
-
-**Phase 3: AI Enhancement (Week 3)**
-- Add A2A protocol support
-- Implement fraud detection agent
-- Deploy smart routing capabilities
-
-**Feature Flags**:
-```yaml
-features:
-  use_real_bank: true
-  enable_fraud_detection: false
-  enable_smart_routing: false
-  fallback_to_mock: true
-```
-
-**Rollback Strategy**:
-- Keep original PaymentService deployment yaml
-- Feature flag to route to mock service
-- Circuit breaker for bank API failures
-- Transaction reconciliation job for inconsistencies
-
-**Monitoring**:
-- Payment success/failure rates
-- Latency percentiles (p50, p95, p99)
-- Bank API availability
-- JWT validation failures
-- A2A agent response times

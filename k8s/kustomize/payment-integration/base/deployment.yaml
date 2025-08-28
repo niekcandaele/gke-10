@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment-integration
+spec:
+  selector:
+    matchLabels:
+      app: payment-integration
+  template:
+    metadata:
+      labels:
+        app: payment-integration
+    spec:
+      serviceAccountName: payment-integration
+      containers:
+      - name: server
+        image: payment-integration:latest
+        ports:
+        - containerPort: 50051
+          name: grpc
+        env:
+        - name: PORT
+          value: "50051"
+        - name: PRIV_KEY_PATH
+          value: "/tmp/.ssh/privatekey"
+        - name: PUB_KEY_PATH
+          value: "/tmp/.ssh/publickey"
+        envFrom:
+        - configMapRef:
+            name: payment-integration-config
+        volumeMounts:
+        - name: tmp
+          mountPath: /tmp
+        - name: keys
+          mountPath: /tmp/.ssh
+          readOnly: true
+        resources:
+          requests:
+            cpu: 100m
+            memory: 64Mi
+          limits:
+            cpu: 200m
+            memory: 128Mi
+        readinessProbe:
+          grpc:
+            port: 50051
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          grpc:
+            port: 50051
+          initialDelaySeconds: 10
+          periodSeconds: 10
+      volumes:
+      - name: tmp
+        emptyDir: {}
+      - name: keys
+        secret:
+          secretName: payment-jwt-key
+          items:
+          - key: jwtRS256.key
+            path: privatekey
+          - key: jwtRS256.key.pub
+            path: publickey

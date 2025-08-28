@@ -1,0 +1,4 @@
+{
+  "deploy_full_stack": false,
+  "comment": "Set deploy_full_stack to true to deploy the entire Online Boutique and Bank of Anthos stack"
+}
