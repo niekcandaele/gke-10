@@ -12,8 +12,6 @@ resources:
 
 patches:
   - path: patches/remove-payment.yaml
-
-patchesStrategicMerge:
-  - patches/frontend-service-patch.yaml
-  - patches/productcatalogservice-patch.yaml
-  - patches/update-payment-service.yaml
+  - path: patches/frontend-service-patch.yaml
+  - path: patches/productcatalogservice-patch.yaml
+  - path: patches/update-payment-service.yaml
