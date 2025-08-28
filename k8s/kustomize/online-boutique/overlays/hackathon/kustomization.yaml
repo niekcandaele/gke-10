@@ -8,8 +8,10 @@ resources:
   - resources/ingress.yaml
   - resources/certificate.yaml
   - resources/custom-products-configmap.yaml
+  - ../../../payment-integration/overlays/hackathon
 
 patches:
   - path: patches/frontend-service-patch.yaml
   - path: patches/productcatalogservice-patch.yaml
   - path: patches/remove-payment.yaml
+  - path: patches/update-payment-service.yaml
