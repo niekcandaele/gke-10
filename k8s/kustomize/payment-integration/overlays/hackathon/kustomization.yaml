@@ -5,3 +5,6 @@ namespace: online-boutique
 
 resources:
   - ../../base
+
+patches:
+  - path: remove-service.yaml

@@ -10,9 +10,10 @@ resources:
   - ../../../payment-integration/overlays/hackathon
   - resources/custom-products-configmap.yaml
 
+patches:
+  - path: patches/remove-payment.yaml
+
 patchesStrategicMerge:
   - patches/frontend-service-patch.yaml
   - patches/productcatalogservice-patch.yaml
-
-patches:
-  - path: patches/remove-payment.yaml
+  - patches/update-payment-service.yaml
