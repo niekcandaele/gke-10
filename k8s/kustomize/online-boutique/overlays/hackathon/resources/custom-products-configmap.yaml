@@ -10,7 +10,7 @@ data:
           "id": "OLJCESPC7Z",
           "name": "Organic Rice (5kg)",
           "description": "Premium long grain organic rice, perfect for daily meals",
-          "picture": "/static/img/products/rice.jpg",
+          "picture": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=600&auto=format&fit=crop&q=60",
           "priceUsd": {
             "currencyCode": "USD",
             "units": 15,
